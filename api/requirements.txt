@@ -1,0 +1,4 @@
+Django<3.3
+djangorestframework==3.14.0
+environs==9.5.0
+django-extensions==3.2.1
