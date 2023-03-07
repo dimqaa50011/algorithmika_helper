@@ -8,6 +8,7 @@ class CourseBaseSchema(BaseModel):
     start_date: date
     end_date: date
     start_time: time
+    backoffice_link: str
     title: str
 
 

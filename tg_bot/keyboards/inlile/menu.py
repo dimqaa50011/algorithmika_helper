@@ -32,12 +32,6 @@ async def get_main_manu_markup():
             callback_data=await make_callback_data(CreateMenuCallback(level=CURRENT_LEVEL + 1))
         )
     )
-    markup.insert(
-        InlineKeyboardButton(
-            text='Предоставить отчет',
-            callback_data=await make_callback_data(CreateMenuCallback(level=CURRENT_LEVEL + 1, report=1))
-        )
-    )
 
     return markup
 
@@ -93,6 +87,13 @@ async def get_students_markup(course_id: int):
                 callback_data=callback
             )
         )
+    report_callback = await make_callback_data(CreateMenuCallback(level=CURRENT_LEVEL + 1, report=1, course_id=course_id))
+    markup.row(
+        InlineKeyboardButton(
+            text='Получить отчет',
+            callback_data=report_callback
+        )
+    )
     back_callback = await make_callback_data(
         CreateMenuCallback(level=CURRENT_LEVEL - 1)
     )
