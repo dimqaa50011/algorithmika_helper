@@ -21,11 +21,22 @@ class ListMiniCousres(MiniCourseMixin, ListAPIView):
     pass
 
 
+class ReadOrUpdateMiniCourse(MiniCourseMixin, RetrieveUpdateAPIView):
+    pass
+
+
 class ListStudents(ListAPIView):
     serializer_class = StudentSerializer
 
     def get_queryset(self):
         return Student.objects.filter(course_id=self.kwargs.get('pk'), is_presence=False)
+
+
+class ListStudentsForReport(ListAPIView):
+    serializer_class = StudentSerializer
+
+    def get_queryset(self):
+        return Student.objects.filter(course_id=self.kwargs.get('pk'))
 
 
 class ReadOrUpdateStudent(StudentMixin, RetrieveUpdateAPIView):
