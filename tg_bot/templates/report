@@ -1,0 +1,6 @@
+{{ course.title }} {{ course.start_date }} {{ course.start_time }}
+{{ course.backoffice_link }}
+
+{% for student in students %}
+{{ student.first_name }} {{ student.last_name }} {% if student.is_presence %} Присутсвует {% else %} Отсутсвует {% endif %}
+{% endfor %}
