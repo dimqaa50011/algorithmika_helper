@@ -25,7 +25,7 @@ class ListStudents(ListAPIView):
     serializer_class = StudentSerializer
 
     def get_queryset(self):
-        return Student.objects.filter(course_id=self.kwargs.get('pk'))
+        return Student.objects.filter(course_id=self.kwargs.get('pk'), is_presence=False)
 
 
 class ReadOrUpdateStudent(StudentMixin, RetrieveUpdateAPIView):
