@@ -36,7 +36,6 @@ class StudentClient(BaseApiClient):
             method=AllowedMethods.GET,
             url=CURRENT_STUDENT_URL,
         )
-        print()
         return OutStudentSchema(**response)
     
     async def update_item(self, pk: int, data: UpdateStudentSchema) -> OutStudentSchema:
