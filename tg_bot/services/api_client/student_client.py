@@ -9,8 +9,11 @@ class StudentClient(BaseApiClient):
         super().__init__()
         self.STUDENT_PATH_URL = 'student/'
     
-    async def get_students_by_course(self, pk: int) -> ListStudentSchema:
-        CURRENT_STUDENT_URL = f'{self.STUDENT_PATH_URL}list/{pk}'
+    async def get_students_by_course(self, pk: int, report: bool = False) -> ListStudentSchema:
+        if report:
+            CURRENT_STUDENT_URL = f'{self.STUDENT_PATH_URL}report/{pk}'
+        else:    
+            CURRENT_STUDENT_URL = f'{self.STUDENT_PATH_URL}list/{pk}'
         response = await self.handler(
             method=AllowedMethods.GET,
             url=CURRENT_STUDENT_URL
