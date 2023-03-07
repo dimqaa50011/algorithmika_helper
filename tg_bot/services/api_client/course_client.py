@@ -23,6 +23,7 @@ class CourseClient(BaseApiClient):
                     start_date=course.get('start_date'),
                     end_date=course.get('end_date'),
                     start_time=course.get('start_time'),
+                    backoffice_link=course.get('backoffice_link'),
                     title=course.get('title')
                 )
             )

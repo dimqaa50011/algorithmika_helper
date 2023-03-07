@@ -21,6 +21,7 @@ class MiniCours(models.Model):
     end_date = models.DateField(verbose_name=_('end date'))
     start_time = models.TimeField(verbose_name=_('start time'))
     title = models.CharField(max_length=128, verbose_name=_('title'))
+    backoffice_link = models.CharField(max_length=512, verbose_name=_('link'))
 
     def __str__(self) -> str:
         return f'{self.title} | {self.start_date} | {self.start_time}'

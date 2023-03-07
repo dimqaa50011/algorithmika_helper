@@ -53,7 +53,6 @@ async def update_presence(call: CallbackQuery, callback_item: OutMenuCallback):
         data=UpdateStudentSchema(**student.dict())
     )
     markup = await get_students_markup(student.course)
-    await call.message.d
     await call.message.edit_reply_markup(markup)
     await call.answer(f'{student.first_name} посещение отмечено!', show_alert=True)
 
