@@ -14,3 +14,35 @@ class TgUser(models.Model):
     class Meta:
         verbose_name = _('telegram user')
         verbose_name_plural = _('telegram users')
+
+
+class MiniCours(models.Model):
+    start_date = models.DateField(verbose_name=_('start date'))
+    end_date = models.DateField(verbose_name=_('end date'))
+    start_time = models.TimeField(verbose_name=_('start time'))
+    title = models.CharField(max_length=128, verbose_name=_('title'))
+
+    def __str__(self) -> str:
+        return f'{self.title} | {self.start_date} | {self.start_time}'
+    
+    class Meta:
+        verbose_name = _('mini course')
+        verbose_name_plural = _('mini courses')
+
+
+class Student(models.Model):
+    first_name = models.CharField(max_length=64, verbose_name=_('name'))
+    last_name = models.CharField(max_length=64, verbose_name=_('surname'))
+    parent_phone = models.CharField(max_length=32, verbose_name=_('parent pthone'))
+    is_presence = models.BooleanField(default=False, verbose_name=_("presence"))
+    course = models.ForeignKey(to=MiniCours, on_delete=models.PROTECT)
+
+    def get_fullname(self):
+        return '{} {}'.format(self.first_name, self.last_name)
+
+    def __str__(self) -> str:
+        return self.get_fullname()
+    
+    class Meta:
+        verbose_name = _('student')
+        verbose_name_plural = _('students')
