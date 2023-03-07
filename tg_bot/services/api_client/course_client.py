@@ -29,6 +29,14 @@ class CourseClient(BaseApiClient):
             )
         return ListCourseSchema(courses=courses)
     
+    async def get_item(self, pk: int):
+        COURSE_URL = f'{self.COURSE_PATH_URL}{pk}'
+        response = await self.handler(
+            method=AllowedMethods.GET,
+            url=COURSE_URL
+        )
+        return OutCourseSchema(**response)
+
     async def _async_iterator(self, data: List[Dict]) -> AsyncIterable:
         for item in data:
             yield item
